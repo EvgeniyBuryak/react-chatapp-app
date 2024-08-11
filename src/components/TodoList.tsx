@@ -5,16 +5,27 @@ import { toggleTodo, removeTodo, toggleEdit } from '../store/todoSlice';
 import EditTodo from './EditTodo';
 
 const TodoList = () => {
-  const todos = useSelector((state: RootState) => state.todos);
+  const { todos, filter: { value: filter } } = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
 
   const handleCloseEditor = (id: string) => {
     dispatch(toggleEdit(id));
   };
 
+  const visibleTodos = todos.filter(todo => {
+    if (!filter) return true;
+    return filter === 'all'
+      ? true
+      : filter === 'complete' && todo.completed === true
+        ? true
+        : filter === 'uncomplete' && todo.completed === false
+          ? true
+          : false;
+  });
+
   return (
     <ul>
-      {todos.map(todo => 
+      {visibleTodos.map(todo =>
         todo.editable ? (
           <EditTodo key={todo.id} id={todo.id} value={todo.text} onClose={() => handleCloseEditor(todo.id)} />
         ) : (

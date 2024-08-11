@@ -2,13 +2,13 @@ import { useDispatch } from "react-redux";
 import { editTodo } from "../store/todoSlice";
 import { useState } from "react";
 
-interface IEditTodo {
+interface IEditTodoProps {
   id: string;
   value: string;
   onClose: () => void;
 };
 
-const EditTodo: React.FC<IEditTodo> = ({ id, value, onClose }) => {
+const EditTodo: React.FC<IEditTodoProps> = ({ id, value, onClose }) => {
   const [text, setText] = useState(value);
   const dispatch = useDispatch();
 
@@ -16,7 +16,6 @@ const EditTodo: React.FC<IEditTodo> = ({ id, value, onClose }) => {
     e.preventDefault();
     if (!text) return;
     dispatch(editTodo({ id, value: text }));
-    // input.value = '';
     onClose();
   };
 
