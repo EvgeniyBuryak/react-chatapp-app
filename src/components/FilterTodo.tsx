@@ -10,22 +10,23 @@ const FilterTodo: React.FC = () => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     const allInput = e.currentTarget.querySelectorAll('input');
     allInput.forEach(input => {
       if (input.nodeName === "INPUT" && e.target !== input) {
         input.checked = false;
+      } else if (e.target === input) {
+        input.checked = true;
       }
     });
   };
 
   return (
     <form onChange={handleSubmit} >
-      <input type="checkbox" value={"all"} onChange={() => handleFilterChange('all')} />
+      <input type="checkbox" value={"all"} defaultChecked onChange={() => handleFilterChange('all')} />
       <span>Все</span>
-      <input type="checkbox" value={"completed"} onChange={() => handleFilterChange('complete')} />
+      <input type="checkbox" value={"completed"}          onChange={() => handleFilterChange('complete')} />
       <span>Выполненные</span>
-      <input type="checkbox" value={"not_completed"} onChange={() => handleFilterChange('uncomplete')} />
+      <input type="checkbox" value={"not_completed"}      onChange={() => handleFilterChange('uncomplete')} />
       <span>Невыполненные</span>
     </form>
   );

@@ -4,7 +4,7 @@ import { RootState } from '../store';
 import { toggleTodo, removeTodo, toggleEdit } from '../store/todoSlice';
 import EditTodo from './EditTodo';
 
-const TodoList = () => {
+const TodoList: React.FC = () => {
   const { todos, filter: { value: filter } } = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
 

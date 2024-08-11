@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../store/todoSlice';
 
-const AddTodo = () => {
+const AddTodo: React.FC = () => {
   const dispatch = useDispatch();
   let input: HTMLInputElement | null;
 

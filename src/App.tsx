@@ -5,7 +5,10 @@ import FilterTodo from './components/FilterTodo';
 
 function App() {
   return (
-    <div>
+    <div
+      className='App'
+      style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}
+    >
       <h1>Todo List</h1>
       <FilterTodo />
       <AddTodo />
