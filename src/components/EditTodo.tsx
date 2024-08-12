@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
 import { editTodo } from "../store/todoSlice";
 import { useState } from "react";
+import Button from "./Button";
+import Input from "./Input";
 
 interface IEditTodoProps {
   id: string;
@@ -20,10 +22,12 @@ const EditTodo: React.FC<IEditTodoProps> = ({ id, value, onClose }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input value={text} onChange={(e) => setText(e.target.value)} type="text" autoFocus />
-      <button type="submit">Save</button>
-      <button type="button" onClick={onClose}>Cancel</button>
+    <form className="flex flex-row justify-between gap-4 mb-2" onSubmit={handleSubmit}>
+      <Input value={text} onChange={(e) => setText(e.target.value)} autoFocus />
+      <div className="flex gap-2">
+        <Button title={"Сохранить"} type="submit"     />
+        <Button title={"Отменить"}  onClick={onClose} />
+      </div>
     </form>
   );
 };

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../store/todoSlice';
+import Button from './Button';
+import Input from './Input';
 
 const AddTodo: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,10 +17,8 @@ const AddTodo: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="m-4 flex justify-end gap-2">
-      <input ref={(node) => input = node} 
-        className="" type="text" placeholder="Add todo" />
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        type="submit">{"Add"}</button>
+      <Input  nodeInput={(node) => input = node} placeholder="добавить todo" />
+      <Button title={"Добавить"} type="submit" />
     </form>
   );
 };

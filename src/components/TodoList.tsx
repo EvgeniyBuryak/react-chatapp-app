@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store';
 import { toggleTodo, removeTodo, toggleEdit } from '../store/todoSlice';
 import EditTodo from './EditTodo';
+import Checkbox from './Checkbox';
+import Button from './Button';
 
 const TodoList: React.FC = () => {
   const { todos, filter: { value: filter } } = useSelector((state: RootState) => state.todos);
@@ -24,38 +26,17 @@ const TodoList: React.FC = () => {
   });
 
   return (
-    <ul className="bg-blue-100 p-6 rounded-lg shadow-md">
+    <ul className="bg-blue-50 p-6 rounded-lg shadow-md">
       {visibleTodos.map(todo =>
         todo.editable ? (
           <EditTodo key={todo.id} id={todo.id} value={todo.text} onClose={() => handleCloseEditor(todo.id)} />
         ) : (
           <li key={todo.id} className="flex flex-row justify-between gap-4 mb-2">
-            <label className="flex items-center space-x-2">
-              <input
-                onClick={() => dispatch(toggleTodo(todo.id))}
-                type="checkbox"
-                checked={todo.completed}
-                readOnly
-                className="form-checkbox h-5 w-5 text-blue-600"
-              >
-              </input>
-              <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
-                {todo.text}
-              </span>
-            </label>
+            <Checkbox value="todo" title={todo.text} onClick={() => dispatch(toggleTodo(todo.id))}
+              checked={todo.completed} readOnly />
             <div className="flex gap-2">
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => handleCloseEditor(todo.id)}
-              >
-                {"Edit"}
-              </button>
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => dispatch(removeTodo(todo.id))}
-              >
-                {"Remove"}
-              </button>
+              <Button title={"Редактировать"} onClick={() => handleCloseEditor(todo.id)} />
+              <Button title={"Удалить"} onClick={() => dispatch(removeTodo(todo.id))} />
             </div>
           </li>
         )

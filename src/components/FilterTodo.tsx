@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
 import { setFilter } from '../store/todoSlice';
+import Checkbox from "./Checkbox";
 
 const FilterTodo: React.FC = () => {
   const dispatch = useDispatch();
@@ -21,22 +22,10 @@ const FilterTodo: React.FC = () => {
   };
 
   return (
-    <form onChange={handleSubmit} className="m-4 flex justify-end gap-2">
-      <label className="flex items-center space-x-2">
-        <input className="form-checkbox h-5 w-5 text-blue-600"
-          type="checkbox" value={"all"} defaultChecked onChange={() => handleFilterChange('all')} />
-        <span>Все</span>
-      </label>
-      <label className="flex items-center space-x-2">
-        <input className="form-checkbox h-5 w-5 text-blue-600"
-          type="checkbox" value={"completed"}          onChange={() => handleFilterChange('complete')} />
-        <span>Выполненные</span>
-      </label>
-      <label className="flex items-center space-x-2">
-        <input className="form-checkbox h-5 w-5 text-blue-600"
-          type="checkbox" value={"not_completed"}      onChange={() => handleFilterChange('uncomplete')} />
-        <span>Невыполненные</span>
-      </label>
+    <form onChange={handleSubmit} className="m-4 flex justify-center gap-14">
+      <Checkbox value="all"   title="Все" defaultChecked onClick={() => handleFilterChange('all')} />
+      <Checkbox value="complete"   title="Выполненные"   onClick={() => handleFilterChange('complete')} />
+      <Checkbox value="uncomplete" title="Невыполненные" onClick={() => handleFilterChange('uncomplete')} />
     </form>
   );
 };
