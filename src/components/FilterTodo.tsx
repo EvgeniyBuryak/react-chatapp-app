@@ -21,13 +21,22 @@ const FilterTodo: React.FC = () => {
   };
 
   return (
-    <form onChange={handleSubmit} >
-      <input type="checkbox" value={"all"} defaultChecked onChange={() => handleFilterChange('all')} />
-      <span>Все</span>
-      <input type="checkbox" value={"completed"}          onChange={() => handleFilterChange('complete')} />
-      <span>Выполненные</span>
-      <input type="checkbox" value={"not_completed"}      onChange={() => handleFilterChange('uncomplete')} />
-      <span>Невыполненные</span>
+    <form onChange={handleSubmit} className="m-4 flex justify-end gap-2">
+      <label className="flex items-center space-x-2">
+        <input className="form-checkbox h-5 w-5 text-blue-600"
+          type="checkbox" value={"all"} defaultChecked onChange={() => handleFilterChange('all')} />
+        <span>Все</span>
+      </label>
+      <label className="flex items-center space-x-2">
+        <input className="form-checkbox h-5 w-5 text-blue-600"
+          type="checkbox" value={"completed"}          onChange={() => handleFilterChange('complete')} />
+        <span>Выполненные</span>
+      </label>
+      <label className="flex items-center space-x-2">
+        <input className="form-checkbox h-5 w-5 text-blue-600"
+          type="checkbox" value={"not_completed"}      onChange={() => handleFilterChange('uncomplete')} />
+        <span>Невыполненные</span>
+      </label>
     </form>
   );
 };
